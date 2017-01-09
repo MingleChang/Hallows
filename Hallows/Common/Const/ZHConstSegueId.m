@@ -7,8 +7,11 @@
 //
 
 #import "ZHConstSegueId.h"
-
-NSString* const ZHConstSegueIdHome2Search =@"ZHHomeToSearch";
-NSString* const ZHConstSegueIdHome2Chapter=@"ZHHomeToChapter";
+//主页到搜索页面
+NSString* const ZHConstSegueIdHome2Search   =@"ZHHomeToSearch";
+//主页到章节列表
+NSString* const ZHConstSegueIdHome2Chapter  =@"ZHHomeToChapter";
+//搜索到章节列表
 NSString* const ZHConstSegueIdSearch2Chapter=@"ZHSearchToChapter";
+//章节列表到阅读界面
 NSString* const ZHConstSegueIdChapter2Reader=@"ZHChapterToReader";
