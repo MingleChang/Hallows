@@ -9,11 +9,13 @@
 #import "ZHReaderController.h"
 #import "ZHCommon.h"
 #import "ZHModel.h"
+#import "ZHTextView.h"
+
 @interface ZHReaderController ()
 
 @property (nonatomic, strong)ZHChapterBodyModel *chapterBody;
 
-@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet ZHTextView *textView;
 
 - (IBAction)preButtonClick:(UIButton *)sender;
 - (IBAction)nextButtonClick:(UIButton *)sender;

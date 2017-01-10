@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    NSLog(@"%@",[UIFont familyNames]);
+    UIFont *lFont = [UIFont fontWithName:@"Gill Sans" size:14];
+    NSLog(@"FamilyName:%@ \n FontName:%@",lFont.familyName,lFont.fontName);
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8200A9681E24AB4F0065D496 /* ZHTextView+Static.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */; };
+		82489EF61E24886B003731C9 /* ZHTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82489EF51E24886B003731C9 /* ZHTextView.m */; };
 		8290713F1E23561A00FA1295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290713E1E23561A00FA1295 /* main.m */; };
 		829071421E23561A00FA1295 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 829071411E23561A00FA1295 /* AppDelegate.m */; };
 		829071481E23561A00FA1295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 829071461E23561A00FA1295 /* Main.storyboard */; };
@@ -33,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8200A9661E24AB4F0065D496 /* ZHTextView+Static.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHTextView+Static.h"; sourceTree = "<group>"; };
+		8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHTextView+Static.m"; sourceTree = "<group>"; };
+		82489EF41E24886B003731C9 /* ZHTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTextView.h; sourceTree = "<group>"; };
+		82489EF51E24886B003731C9 /* ZHTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTextView.m; sourceTree = "<group>"; };
 		8290713A1E23561A00FA1295 /* Hallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8290713E1E23561A00FA1295 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		829071401E23561A00FA1295 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,6 +103,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		82489EF31E248856003731C9 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				82489EF41E24886B003731C9 /* ZHTextView.h */,
+				82489EF51E24886B003731C9 /* ZHTextView.m */,
+				8200A9661E24AB4F0065D496 /* ZHTextView+Static.h */,
+				8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		829071311E23561A00FA1295 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +134,7 @@
 		8290713C1E23561A00FA1295 /* Hallows */ = {
 			isa = PBXGroup;
 			children = (
+				82489EF31E248856003731C9 /* Views */,
 				829071A21E23640E00FA1295 /* Models */,
 				829071811E235EAE00FA1295 /* Common */,
 				829071631E23593800FA1295 /* Controllers */,
@@ -354,7 +372,9 @@
 				829071981E235F0200FA1295 /* MCMimeType.m in Sources */,
 				8290718B1E235EAE00FA1295 /* ZHConstStoryboardId.m in Sources */,
 				8290719C1E235F0200FA1295 /* MCURLSession.m in Sources */,
+				82489EF61E24886B003731C9 /* ZHTextView.m in Sources */,
 				829071A51E23645900FA1295 /* ZHChapterModel.m in Sources */,
+				8200A9681E24AB4F0065D496 /* ZHTextView+Static.m in Sources */,
 				829071AF1E23652900FA1295 /* XPathQuery.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +536,7 @@
 				829071531E23561A00FA1295 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
