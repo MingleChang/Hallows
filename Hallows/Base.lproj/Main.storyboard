@@ -43,18 +43,32 @@
                                     <action selector="buttonClick:" destination="e3r-OF-OZr" eventType="touchUpInside" id="ycR-ak-dpa"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XzR-Ff-wdL">
+                                <rect key="frame" x="137.5" y="356" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="bR6-c2-Uxp"/>
+                                    <constraint firstAttribute="height" constant="100" id="tKW-Em-1X1"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="MlD-gE-hr0" firstAttribute="centerY" secondItem="ZsU-mR-DnL" secondAttribute="centerY" id="Apl-dJ-FJK"/>
                             <constraint firstItem="MlD-gE-hr0" firstAttribute="centerX" secondItem="ZsU-mR-DnL" secondAttribute="centerX" id="UJf-nY-AMc"/>
+                            <constraint firstItem="XzR-Ff-wdL" firstAttribute="top" secondItem="MlD-gE-hr0" secondAttribute="bottom" constant="40" id="aCF-gh-aRf"/>
+                            <constraint firstItem="XzR-Ff-wdL" firstAttribute="centerX" secondItem="ZsU-mR-DnL" secondAttribute="centerX" id="zBV-db-Hq6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="ckO-ce-0vR">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="FNv-xD-hxj"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="FNv-xD-hxj">
+                            <connections>
+                                <action selector="searchBarButtonItemClick:" destination="e3r-OF-OZr" id="Y0L-wW-MHN"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="bPR-hX-x7V" kind="show" identifier="ZHHomeToSearch" action="showDetailViewController:sender:" id="VEB-k9-iTD"/>
+                        <outlet property="imageView" destination="XzR-Ff-wdL" id="Bjy-tn-v6u"/>
+                        <segue destination="bPR-hX-x7V" kind="show" identifier="ZHHomeToSearch" id="VEB-k9-iTD"/>
                         <segue destination="zMH-wz-chK" kind="show" identifier="ZHHomeToChapter" id="RiD-Y7-OxH"/>
                     </connections>
                 </viewController>
@@ -138,7 +152,7 @@
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="asdfas好的" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hMz-QQ-HjA" customClass="ZHTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hMz-QQ-HjA" customClass="ZHTextView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -200,6 +214,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ax9-s5-ORw"/>
                     <connections>
                         <segue destination="zMH-wz-chK" kind="show" identifier="ZHSearchToChapter" action="showDetailViewController:sender:" id="4bS-U5-6Hg"/>
                     </connections>

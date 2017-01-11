@@ -11,7 +11,10 @@
 
 @interface ZHHomeController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 - (IBAction)buttonClick:(UIButton *)sender;
+
+- (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender;
 
 @end
 
@@ -20,9 +23,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSLog(@"%@",[UIFont familyNames]);
-    UIFont *lFont = [UIFont fontWithName:@"Gill Sans" size:14];
-    NSLog(@"FamilyName:%@ \n FontName:%@",lFont.familyName,lFont.fontName);
+    NSMutableArray *lArray = [NSMutableArray array];
+    for (int i=1; i<=5; i++) {
+        NSString *lImageName = [NSString stringWithFormat:@"loading_%i",i];
+        UIImage *lImage = [UIImage imageNamed:lImageName];
+        [lArray addObject:lImage];
+    }
+    self.imageView.animationImages = [lArray copy];
+    self.imageView.animationDuration=1/3.0;
+    [self.imageView startAnimating];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -43,4 +52,9 @@
 - (IBAction)buttonClick:(UIButton *)sender {
     [self performSegueWithIdentifier:ZHConstSegueIdHome2Chapter sender:nil];
 }
+
+- (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:ZHConstSegueIdHome2Search sender:nil];
+}
+
 @end
