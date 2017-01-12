@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHViewController.h"
 
-@interface ZHHomeController : UIViewController
+@interface ZHHomeController : ZHViewController
 
 @end

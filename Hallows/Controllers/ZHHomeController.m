@@ -23,15 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSMutableArray *lArray = [NSMutableArray array];
-    for (int i=1; i<=5; i++) {
-        NSString *lImageName = [NSString stringWithFormat:@"loading_%i",i];
-        UIImage *lImage = [UIImage imageNamed:lImageName];
-        [lArray addObject:lImage];
-    }
-    self.imageView.animationImages = [lArray copy];
-    self.imageView.animationDuration=1/3.0;
-    [self.imageView startAnimating];
 }
 
 - (void)didReceiveMemoryWarning {

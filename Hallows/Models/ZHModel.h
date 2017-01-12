@@ -9,6 +9,7 @@
 #ifndef ZHModel_h
 #define ZHModel_h
 
+#import "ZHBookModel.h"
 #import "ZHChapterModel.h"
 #import "ZHChapterBodyModel.h"
 

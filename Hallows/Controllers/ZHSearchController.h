@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHViewController.h"
 
-@interface ZHSearchController : UIViewController
+@interface ZHSearchController : ZHViewController
 
 @end

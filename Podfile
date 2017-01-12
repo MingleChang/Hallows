@@ -5,4 +5,5 @@ target 'Hallows' do
   pod 'FMDB', '~> 2.6.2'
   pod 'SDWebImage', '~> 3.7.6'
   pod 'MJExtension', '~> 3.0.10'
+  pod 'MJRefresh', '~> 3.1.0'
 end

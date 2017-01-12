@@ -8,7 +8,9 @@
 
 #import "ZHSearchController.h"
 
-@interface ZHSearchController ()
+@interface ZHSearchController () <UISearchBarDelegate>
+
+@property (nonatomic, strong)UISearchBar *searchBar;
 
 @end
 
@@ -17,11 +19,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self configure];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Configure
+- (void)configure {
+    [self configureView];
+    [self configureData];
+}
+
+- (void)configureView {
+    self.searchBar = [[UISearchBar alloc]init];
+    self.searchBar.delegate = self;
+    self.navigationItem.titleView = self.searchBar;
+}
+
+- (void)configureData {
+    
+}
+
+#pragma mark - Delegate
+#pragma mark - SearchBar Delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar {
+    [searchBar resignFirstResponder];
 }
 
 /*

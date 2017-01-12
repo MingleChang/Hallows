@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ZHViewController.h"
 
-@interface ZHReaderController : UIViewController
+@interface ZHReaderController : ZHViewController
 
 @property (nonatomic, copy)NSString *address;
 
