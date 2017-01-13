@@ -10,4 +10,7 @@
 
 @interface ZHViewController : UIViewController
 
+- (BOOL)navigationBarNeedHidden;
+- (void)resetNavigationBarItems;
+
 @end

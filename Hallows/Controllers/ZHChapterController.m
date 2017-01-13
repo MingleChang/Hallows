@@ -44,7 +44,7 @@
 
 - (void)configureData {
     ZH_WEAK(self);
-    [ZHParse parseChapterListWithAddress:@"http://www.83zw.com/book/10/10586" completion:^(id response, NSError *error) {
+    [ZHParse parseChapterListWithAddress:self.bookModel.chapter completion:^(id response, NSError *error) {
         ZH_STRONG(weakobject);
         NSArray *lArray = (NSArray *)response;
         strongobject.chapters = lArray;
@@ -85,5 +85,9 @@
     }
 }
 
+#pragma mark - Override
+- (void)resetNavigationBarItems {
+    self.navigationItem.title = self.bookModel.title;
+}
 
 @end

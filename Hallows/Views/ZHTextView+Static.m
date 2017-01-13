@@ -8,7 +8,7 @@
 
 #import "ZHTextView+Static.h"
 
-static CGFloat fontSize = 30;
+static CGFloat fontSize = 20;
 static CGFloat lineSpacing = 10;
 static UIColor *fontColor;
 //static NSString *fontName;

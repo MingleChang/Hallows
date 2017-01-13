@@ -10,7 +10,10 @@
 #define ZHMacro_h
 
 
-#endif /* ZHMacro_h */
-
 #define ZH_WEAK(object) __weak typeof(object) weakobject = object;
 #define ZH_STRONG(object) __strong typeof(object) strongobject = object;
+
+
+#define PlaceholderImage [UIImage imageNamed:@"placeholder"]
+
+#endif /* ZHMacro_h */

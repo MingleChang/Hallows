@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ZHViewController.h"
+@class ZHBookModel;
 
 @interface ZHChapterController : ZHViewController
+
+@property (nonatomic, weak)ZHBookModel *bookModel;
 
 @end

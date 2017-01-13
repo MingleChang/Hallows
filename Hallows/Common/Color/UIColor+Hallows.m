@@ -11,7 +11,7 @@
 @implementation UIColor (Hallows)
 
 + (UIColor *)zh_navigationColor {
-    return [UIColor blueColor];
+    return [UIColor darkGrayColor];
 }
 
 + (UIColor *)zh_navigationItemColor {

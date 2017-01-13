@@ -11,9 +11,6 @@
 
 @interface ZHHomeController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-- (IBAction)buttonClick:(UIButton *)sender;
-
 - (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender;
 
 @end
@@ -40,9 +37,6 @@
 }
 */
 
-- (IBAction)buttonClick:(UIButton *)sender {
-    [self performSegueWithIdentifier:ZHConstSegueIdHome2Chapter sender:nil];
-}
 
 - (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:ZHConstSegueIdHome2Search sender:nil];

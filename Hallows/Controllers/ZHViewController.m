@@ -17,8 +17,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
-    self.navigationItem.backBarButtonItem.tintColor = [UIColor whiteColor];
+    [self resetBackBarButtonItem];
+    [self resetNavigationBarItems];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self resetNavigationBarWithAnimated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,6 +31,22 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Private Mothed
+- (void)resetBackBarButtonItem {
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
+}
+
+- (void)resetNavigationBarWithAnimated:(BOOL)animated {
+    BOOL isHidden = [self navigationBarNeedHidden];
+    [self.navigationController setNavigationBarHidden:isHidden animated:animated];
+}
+
+- (BOOL)navigationBarNeedHidden {
+    return NO;
+}
+- (void)resetNavigationBarItems {
+    
+}
 /*
 #pragma mark - Navigation
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8200A9681E24AB4F0065D496 /* ZHTextView+Static.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */; };
+		821D57F71E293A8A00546D39 /* ZHSearchBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 821D57F51E293A8A00546D39 /* ZHSearchBookCell.m */; };
+		821D57F81E293A8A00546D39 /* ZHSearchBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */; };
 		82489EF61E24886B003731C9 /* ZHTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82489EF51E24886B003731C9 /* ZHTextView.m */; };
 		8290713F1E23561A00FA1295 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8290713E1E23561A00FA1295 /* main.m */; };
 		829071421E23561A00FA1295 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 829071411E23561A00FA1295 /* AppDelegate.m */; };
@@ -46,6 +48,9 @@
 		5707F5EEAEAADF6AA9A15B62 /* Pods-Hallows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hallows.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hallows/Pods-Hallows.debug.xcconfig"; sourceTree = "<group>"; };
 		8200A9661E24AB4F0065D496 /* ZHTextView+Static.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHTextView+Static.h"; sourceTree = "<group>"; };
 		8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHTextView+Static.m"; sourceTree = "<group>"; };
+		821D57F41E293A8A00546D39 /* ZHSearchBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSearchBookCell.h; sourceTree = "<group>"; };
+		821D57F51E293A8A00546D39 /* ZHSearchBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSearchBookCell.m; sourceTree = "<group>"; };
+		821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHSearchBookCell.xib; sourceTree = "<group>"; };
 		82489EF41E24886B003731C9 /* ZHTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHTextView.h; sourceTree = "<group>"; };
 		82489EF51E24886B003731C9 /* ZHTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHTextView.m; sourceTree = "<group>"; };
 		8290713A1E23561A00FA1295 /* Hallows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hallows.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +146,9 @@
 				82489EF51E24886B003731C9 /* ZHTextView.m */,
 				8200A9661E24AB4F0065D496 /* ZHTextView+Static.h */,
 				8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */,
+				821D57F41E293A8A00546D39 /* ZHSearchBookCell.h */,
+				821D57F51E293A8A00546D39 /* ZHSearchBookCell.m */,
+				821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -413,6 +421,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				821D57F81E293A8A00546D39 /* ZHSearchBookCell.xib in Resources */,
 				82BE27D71E27BBEA00476D42 /* hallows.db in Resources */,
 				8290714D1E23561A00FA1295 /* LaunchScreen.storyboard in Resources */,
 				82BE27D51E27B5B700476D42 /* Assets.xcassets in Resources */,
@@ -487,6 +496,7 @@
 				8290713F1E23561A00FA1295 /* main.m in Sources */,
 				829071991E235F0200FA1295 /* MCNetworkConfigure.m in Sources */,
 				829071AE1E23652900FA1295 /* TFHppleElement.m in Sources */,
+				821D57F71E293A8A00546D39 /* ZHSearchBookCell.m in Sources */,
 				8290716C1E23593800FA1295 /* ZHChapterController.m in Sources */,
 				8290716F1E23593800FA1295 /* ZHSearchController.m in Sources */,
 				829071AD1E23652900FA1295 /* TFHpple.m in Sources */,
