@@ -19,4 +19,5 @@
 + (CGFloat)lineSpacing;
 + (void)setLineSpacing:(CGFloat)spacing;
 
++ (NSAttributedString *)attributedTextByText:(NSString *)text;
 @end

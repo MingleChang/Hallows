@@ -41,4 +41,17 @@ static UIColor *fontColor;
 + (void)setLineSpacing:(CGFloat)spacing {
     lineSpacing = spacing;
 }
+
++ (NSAttributedString *)attributedTextByText:(NSString *)text {
+    NSMutableAttributedString *lAttributedStr = [[NSMutableAttributedString alloc] initWithString:text];
+    UIFont *lFont = [UIFont systemFontOfSize:[ZHTextView fontSize]];
+    [lAttributedStr addAttribute:NSFontAttributeName value:lFont range:NSMakeRange(0, lAttributedStr.length)];
+    
+    [lAttributedStr addAttribute:NSForegroundColorAttributeName value:[ZHTextView fontColor] range:NSMakeRange(0, lAttributedStr.length)];
+    
+    NSMutableParagraphStyle *lParagraphStyle = [[NSMutableParagraphStyle alloc] init];
+    lParagraphStyle.lineSpacing = [ZHTextView lineSpacing];
+    [lAttributedStr addAttribute:NSParagraphStyleAttributeName value:lParagraphStyle range:NSMakeRange(0, lAttributedStr.length)];
+    return [lAttributedStr copy];
+}
 @end

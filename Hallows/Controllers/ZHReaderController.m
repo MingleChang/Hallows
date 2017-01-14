@@ -7,18 +7,20 @@
 //
 
 #import "ZHReaderController.h"
+#import "ZHReaderPageController.h"
 #import "ZHCommon.h"
 #import "ZHModel.h"
 #import "ZHTextView.h"
 
-@interface ZHReaderController ()
+@interface ZHReaderController () <UIPageViewControllerDelegate, UIPageViewControllerDataSource>
+
+@property (nonatomic, strong)UIPageViewController *pageController;
 
 @property (nonatomic, strong)ZHChapterBodyModel *chapterBody;
-
-@property (weak, nonatomic) IBOutlet ZHTextView *textView;
-
-- (IBAction)preButtonClick:(UIButton *)sender;
-- (IBAction)nextButtonClick:(UIButton *)sender;
+@property (nonatomic, assign)ZHReaderPageDirection pageDirection;
+@property (nonatomic, copy)NSArray *pages;
+@property (nonatomic, assign)NSInteger pageIndex;
+@property (nonatomic, assign)BOOL needUpdate;
 
 @end
 
@@ -42,11 +44,45 @@
 }
 
 - (void)configureView {
+    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageController.dataSource = self;
+    self.pageController.delegate = self;
+    [self.view addSubview:self.pageController.view];
+    [self addChildViewController:self.pageController];
+    [self.pageController.view mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
     
+    ZHReaderPageController *lReaderPage = [[ZHReaderPageController alloc] init];
+    [self.pageController setViewControllers:@[lReaderPage] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 - (void)configureData {
     [self requestChapterBodyWithAddress:self.address];
+}
+
+- (void)showTextByRequest {
+    NSArray *lViewControllers = self.pageController.viewControllers;
+    ZHReaderPageController *lReaderPage = lViewControllers[0];
+    if (self.pageDirection == ZHReaderPageDirectionPrevious) {
+        self.pageIndex = self.pages.count;
+        [lReaderPage showAttributedText:self.pages.lastObject page:self.pageIndex totalPage:self.pages.count];
+    }else {
+        self.pageIndex = 1;
+        [lReaderPage showAttributedText:self.pages.firstObject page:self.pageIndex totalPage:self.pages.count];
+    }
+}
+
+- (void)pageChapterBody {
+    ZH_WEAK(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        ZH_STRONG(weakobject);
+        strongobject.pages = [strongobject.chapterBody pages];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            [strongobject showTextByRequest];
+        });
+        
+    });
 }
 
 #pragma mark - Request
@@ -55,8 +91,59 @@
     [ZHParse parseChapterBodyWithAddress:address completion:^(id response, NSError *error) {
         ZH_STRONG(weakobject);
         strongobject.chapterBody = (ZHChapterBodyModel *)response;
-        strongobject.textView.text = strongobject.chapterBody.content;
+        [strongobject pageChapterBody];
     }];
+}
+
+#pragma mark - Delegate
+#pragma mark - UIPageViewController DataSource
+- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController{
+    if (self.pageIndex <= 1 && ![self.chapterBody hasPre]) {
+        return nil;
+    }
+    //向前
+    ZHReaderPageController *lReaderPage = [[ZHReaderPageController alloc] init];
+    
+    if (self.pageIndex <= 1) {
+        self.pageDirection = ZHReaderPageDirectionPrevious;
+        lReaderPage.text = nil;
+        lReaderPage.page = 0;
+    }else {
+//        self.pageDirection = ZHReaderPageDirectionPrevious;
+        lReaderPage.text = self.pages[self.pageIndex - 2];
+        self.pageIndex --;
+    }
+    
+    return lReaderPage;
+}
+- (nullable UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController{
+    if (self.pageIndex >= self.pages.count && ![self.chapterBody hasNext]) {
+        return nil;
+    }
+    //向后
+    ZHReaderPageController *lReaderPage = [[ZHReaderPageController alloc] init];
+    if (self.pageIndex >= self.pages.count) {
+        self.pageDirection = ZHReaderPageDirectionNext;
+        lReaderPage.text = nil;
+        lReaderPage.page = 0;
+    }else {
+//        self.pageDirection = ZHReaderPageDirectionNext;
+        lReaderPage.text = self.pages[self.pageIndex];
+        self.pageIndex ++;
+    }
+    return lReaderPage;
+}
+
+#pragma mark - UIPageViewController Delegate
+- (void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers{
+}
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed{
+    if (self.pageDirection == ZHReaderPageDirectionPrevious) {
+        [self requestChapterBodyWithAddress:self.chapterBody.preAddress];
+    }else if(self.pageDirection == ZHReaderPageDirectionNext) {
+        [self requestChapterBodyWithAddress:self.chapterBody.nextAddress];
+    }
+//    self.pageDirection = ZHReaderPageDirectionUnknown;
 }
 /*
 #pragma mark - Navigation
@@ -68,15 +155,5 @@
 }
 */
 #pragma mark - Event Response
-- (IBAction)preButtonClick:(UIButton *)sender {
-    if ([self.chapterBody hasPre]) {
-        [self requestChapterBodyWithAddress:self.chapterBody.preAddress];
-    }
-}
 
-- (IBAction)nextButtonClick:(UIButton *)sender {
-    if ([self.chapterBody hasNext]) {
-        [self requestChapterBodyWithAddress:self.chapterBody.nextAddress];
-    }
-}
 @end

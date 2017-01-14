@@ -20,4 +20,6 @@
 
 + (ZHChapterBodyModel *)chapterBodyWithHpple:(TFHpple *)hpple andAddress:(NSString *)address;
 
+- (NSArray *)pages;
+
 @end

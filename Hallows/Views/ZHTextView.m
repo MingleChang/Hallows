@@ -8,6 +8,11 @@
 
 #import "ZHTextView.h"
 #import "ZHTextView+Static.h"
+#import "ZHCommon.h"
+
+@interface ZHTextView () <UIGestureRecognizerDelegate>
+
+@end
 
 @implementation ZHTextView
 
@@ -16,26 +21,29 @@
 
 
 #pragma mark - Member Methods
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        [self configure];
+    }
+    return self;
 }
 
-- (NSAttributedString *)attributedTextByText:(NSString *)text {
-    NSMutableAttributedString *lAttributedStr = [[NSMutableAttributedString alloc] initWithString:text];
-    UIFont *lFont = [UIFont systemFontOfSize:[ZHTextView fontSize]];
-    [lAttributedStr addAttribute:NSFontAttributeName value:lFont range:NSMakeRange(0, lAttributedStr.length)];
-    
-    [lAttributedStr addAttribute:NSForegroundColorAttributeName value:[ZHTextView fontColor] range:NSMakeRange(0, lAttributedStr.length)];
-    
-    NSMutableParagraphStyle *lParagraphStyle = [[NSMutableParagraphStyle alloc] init];
-    lParagraphStyle.lineSpacing = [ZHTextView lineSpacing];
-    [lAttributedStr addAttribute:NSParagraphStyleAttributeName value:lParagraphStyle range:NSMakeRange(0, lAttributedStr.length)];
-    return [lAttributedStr copy];
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self configure];
+}
+
+#pragma mark - Configure 
+- (void)configure {
+    self.editable = NO;
+    self.bounces = NO;
 }
 
 - (void)setText:(NSString *)text {
-    NSAttributedString *lAttributedString = [self attributedTextByText:text];
+    NSLog(@"%@",NSStringFromUIEdgeInsets(self.textContainerInset));
+    NSAttributedString *lAttributedString = [ZHTextView attributedTextByText:text];
     self.attributedText = lAttributedString;
 }
+
 @end

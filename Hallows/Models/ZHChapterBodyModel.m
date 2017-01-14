@@ -8,6 +8,9 @@
 
 #import "ZHChapterBodyModel.h"
 #import "TFHpple.h"
+#import "ZHTextView.h"
+#import "ZHTextView+Static.h"
+#import "ZHCommon.h"
 
 @implementation ZHChapterBodyModel
 
@@ -16,6 +19,12 @@
 }
 - (BOOL)hasNext {
     return self.nextAddress.length > 0;
+}
+
+- (NSArray *)pages{
+    NSAttributedString *lAttributedString = [ZHTextView attributedTextByText:self.content];
+    NSArray *lArray = [lAttributedString pagesInSize:ZH_PageSize];
+    return lArray;
 }
 
 + (ZHChapterBodyModel *)chapterBodyWithElement:(TFHppleElement *)element andAddress:(NSString *)address {

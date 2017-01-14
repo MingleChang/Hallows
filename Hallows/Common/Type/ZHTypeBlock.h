@@ -13,3 +13,9 @@
 #endif /* ZHTypeBlock_h */
 
 typedef void(^zh_completionBlock)(id response, NSError *error);
+
+typedef NS_ENUM(NSInteger, ZHReaderPageDirection) {
+    ZHReaderPageDirectionUnknown    = 0,
+    ZHReaderPageDirectionPrevious   = 1,
+    ZHReaderPageDirectionNext       = 2
+};
