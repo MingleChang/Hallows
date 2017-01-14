@@ -17,10 +17,12 @@
 #import "ZHMacro.h"
 #import "ZHDatabase.h"
 #import "UIColor+Hallows.h"
+#import "ZHUtils.h"
 
 #import <FMDB/FMDB.h>
 #import <MJExtension/MJExtension.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <MJRefresh/MJRefresh.h>
 
 
 #endif /* ZHCommon_h */

@@ -13,6 +13,7 @@
 #import "ZHModel.h"
 
 static NSString *const kSearchBookCellId = @"ZHSearchBookCellId";
+static NSInteger const kPageCount = 10;
 
 @interface ZHSearchController () <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
@@ -20,8 +21,6 @@ static NSString *const kSearchBookCellId = @"ZHSearchBookCellId";
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (nonatomic, copy)NSString *searchKey;
-@property (nonatomic, assign)NSInteger pageIndex;
-@property (nonatomic, assign)NSInteger pageCount;
 
 @property (nonatomic, strong)NSMutableArray *books;
 
@@ -50,24 +49,46 @@ static NSString *const kSearchBookCellId = @"ZHSearchBookCellId";
     self.searchBar = [[UISearchBar alloc]init];
     self.searchBar.delegate = self;
     self.navigationItem.titleView = self.searchBar;
+    
+    [ZHUtils zh_footerWithRefreshingScrollView:self.tableView refreshingTarget:self refreshingAction:@selector(refreshFooterEventResponse:)];
 }
 
 - (void)configureData {
     self.books = [NSMutableArray array];
-    self.pageIndex = 0;
-    self.pageCount =10;
 }
 
 #pragma mark - Private Mothed
 - (void)searchWithKey:(NSString *)key {
     self.searchKey = key;
+    
+    [self.books removeAllObjects];
+    [self.tableView reloadData];
+    
     ZH_WEAK(self);
-    [[ZHDatabase database] searchKey:self.searchKey start:self.pageIndex + 1 count:self.pageCount completion:^(NSArray *response, NSError *error) {
+    [[ZHDatabase database] searchKey:self.searchKey start:self.books.count count:kPageCount completion:^(NSArray *response, NSError *error) {
         ZH_STRONG(weakobject);
-        [strongobject.books removeAllObjects];
         [strongobject.books addObjectsFromArray:response];
-        strongobject.pageIndex ++ ;
         [strongobject.tableView reloadData];
+        if (response.count < kPageCount) {
+            [strongobject.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [strongobject.tableView.mj_footer resetNoMoreData];
+        }
+    }];
+}
+
+#pragma mark - Event Response
+- (void)refreshFooterEventResponse:(MJRefreshFooter *)sender {
+    ZH_WEAK(self);
+    [[ZHDatabase database] searchKey:self.searchKey start:self.books.count count:kPageCount completion:^(NSArray *response, NSError *error) {
+        ZH_STRONG(weakobject);
+        [strongobject.books addObjectsFromArray:response];
+        [strongobject.tableView reloadData];
+        if (response.count < kPageCount) {
+            [strongobject.tableView.mj_footer endRefreshingWithNoMoreData];
+        }else {
+            [strongobject.tableView.mj_footer endRefreshing];
+        }
     }];
 }
 

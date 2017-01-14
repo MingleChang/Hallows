@@ -40,6 +40,7 @@
 		82BE27E21E27CA4800476D42 /* UIColor+Hallows.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BE27E11E27CA4800476D42 /* UIColor+Hallows.m */; };
 		82BE27E51E27CAA500476D42 /* AppDelegate+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BE27E41E27CAA500476D42 /* AppDelegate+Configure.m */; };
 		82BE27E81E27CBFE00476D42 /* ZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BE27E71E27CBFE00476D42 /* ZHViewController.m */; };
+		82DFA0E41E29D25100A059ED /* ZHUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA0E31E29D25100A059ED /* ZHUtils.m */; };
 		9B91C4948835113D95D053C0 /* Pods_Hallows.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1603F0326A5A1ED6E4363A80 /* Pods_Hallows.framework */; };
 /* End PBXBuildFile section */
 
@@ -114,6 +115,8 @@
 		82BE27E41E27CAA500476D42 /* AppDelegate+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Configure.m"; sourceTree = "<group>"; };
 		82BE27E61E27CBFE00476D42 /* ZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHViewController.h; sourceTree = "<group>"; };
 		82BE27E71E27CBFE00476D42 /* ZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHViewController.m; sourceTree = "<group>"; };
+		82DFA0E21E29D25100A059ED /* ZHUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUtils.h; sourceTree = "<group>"; };
+		82DFA0E31E29D25100A059ED /* ZHUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUtils.m; sourceTree = "<group>"; };
 		E701FD0DBFE3FDFBC363CAFC /* Pods-Hallows.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hallows.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hallows/Pods-Hallows.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -219,6 +222,7 @@
 		829071811E235EAE00FA1295 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				82DFA0E11E29D23C00A059ED /* Utils */,
 				82BE27DF1E27CA2D00476D42 /* Color */,
 				82BE27D81E27BC0800476D42 /* Database */,
 				829071B61E236C3900FA1295 /* Type */,
@@ -359,6 +363,15 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		82DFA0E11E29D23C00A059ED /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				82DFA0E21E29D25100A059ED /* ZHUtils.h */,
+				82DFA0E31E29D25100A059ED /* ZHUtils.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -495,6 +508,7 @@
 				8290719B1E235F0200FA1295 /* MCResponseSerialization.m in Sources */,
 				8290713F1E23561A00FA1295 /* main.m in Sources */,
 				829071991E235F0200FA1295 /* MCNetworkConfigure.m in Sources */,
+				82DFA0E41E29D25100A059ED /* ZHUtils.m in Sources */,
 				829071AE1E23652900FA1295 /* TFHppleElement.m in Sources */,
 				821D57F71E293A8A00546D39 /* ZHSearchBookCell.m in Sources */,
 				8290716C1E23593800FA1295 /* ZHChapterController.m in Sources */,

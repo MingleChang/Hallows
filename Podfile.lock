@@ -2,24 +2,27 @@ PODS:
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - MJExtension (3.0.10)
-  - MJRefresh (3.1.0)
+  - Masonry (1.0.2)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.12)
   - SDWebImage (3.7.6):
     - SDWebImage/Core (= 3.7.6)
   - SDWebImage/Core (3.7.6)
 
 DEPENDENCIES:
   - FMDB (~> 2.6.2)
+  - Masonry (~> 1.0.0)
   - MJExtension (~> 3.0.10)
   - MJRefresh (~> 3.1.0)
   - SDWebImage (~> 3.7.6)
 
 SPEC CHECKSUMS:
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
-  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: c325cf02c30337336b95beff20a13df489ec0ec9
 
-PODFILE CHECKSUM: d219be878e5547db7c210c4bce0d1d94f63d665e
+PODFILE CHECKSUM: c2caa09bac6bd6f8dde0aa80a8e303e849a687ba
 
 COCOAPODS: 1.0.0
