@@ -17,6 +17,8 @@
 @property (nonatomic, copy)NSString *preAddress;
 @property (nonatomic, copy)NSString *nextAddress;
 
+- (BOOL)isValid;
+
 - (BOOL)hasPre;
 - (BOOL)hasNext;
 

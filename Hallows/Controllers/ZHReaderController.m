@@ -94,7 +94,17 @@
     ZH_WEAK(self);
     [ZHParse parseChapterBodyWithAddress:address completion:^(id response, NSError *error) {
         ZH_STRONG(weakobject);
-        strongobject.chapterBody = (ZHChapterBodyModel *)response;
+        ZHChapterBodyModel *lChapterBody = (ZHChapterBodyModel *)response;
+        if (![lChapterBody isValid]) {
+            if (self.pageDirection == ZHReaderPageDirectionPrevious) {
+                lChapterBody.nextAddress = strongobject.chapterBody.address;
+            }
+            if (self.pageDirection == ZHReaderPageDirectionNext) {
+                lChapterBody.preAddress = strongobject.chapterBody.address;
+            }
+        }
+        
+        strongobject.chapterBody = lChapterBody;
         [strongobject pageChapterBody];
         [strongobject advanceRequestChapterBody];
     }];

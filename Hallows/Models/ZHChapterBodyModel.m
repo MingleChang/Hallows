@@ -14,6 +14,10 @@
 
 @implementation ZHChapterBodyModel
 
+- (BOOL)isValid {
+    return self.content.length > 0;
+}
+
 - (BOOL)hasPre {
     return self.preAddress.length > 0;
 }
