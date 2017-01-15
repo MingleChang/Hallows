@@ -63,9 +63,10 @@ static NSInteger const kPageCount = 10;
     
     [self.books removeAllObjects];
     [self.tableView reloadData];
-    
+    [self showLoading];
     ZH_WEAK(self);
     [[ZHDatabase database] searchKey:self.searchKey start:self.books.count count:kPageCount completion:^(NSArray *response, NSError *error) {
+        [self dismissLoading];
         ZH_STRONG(weakobject);
         [strongobject.books addObjectsFromArray:response];
         [strongobject.tableView reloadData];

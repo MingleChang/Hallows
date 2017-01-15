@@ -10,5 +10,6 @@
 #define ZHCategory_h
 
 #import "NSAttributedString+Hallows.h"
+#import "NSString+Hallows.h"
 
 #endif /* ZHCategory_h */

@@ -53,21 +53,26 @@
 }
 
 + (ZHChapterBodyModel *)chapterBodyWithHpple:(TFHpple *)hpple andAddress:(NSString *)address {
-    NSArray *lElements  = [hpple searchWithXPathQuery:@"//div[@id='chapter_content']"];
-    NSString *lContent = [ZHChapterBodyModel contentWithElement:lElements[0]];
+    NSArray *lTitleElements  = [hpple searchWithXPathQuery:@"//div[@id='chapers_title']/h1"];
+    NSString *lTitle = [ZHChapterBodyModel contentWithElement:lTitleElements.firstObject];
+    
+    NSArray *lContentElements  = [hpple searchWithXPathQuery:@"//div[@id='chapter_content']"];
+    NSString *lContent = [ZHChapterBodyModel contentWithElement:lContentElements.firstObject];
     
     NSArray *lPreElements = [hpple searchWithXPathQuery:@"//div[@id='page_bar']//a[@id='prevLink']"];
-    TFHppleElement *lPreElement = lPreElements[0];
+    TFHppleElement *lPreElement = lPreElements.firstObject;
     NSString *lPreHref = [lPreElement objectForKey:@"href"];
     
     NSArray *lNextElements = [hpple searchWithXPathQuery:@"//div[@id='page_bar']//a[@id='nextLink']"];
-    TFHppleElement *lNextElement = lNextElements[0];
+    TFHppleElement *lNextElement = lNextElements.firstObject;
     NSString *lNextHref = [lNextElement objectForKey:@"href"];
     
     NSString *lRootAddress = [address stringByDeletingLastPathComponent];
     
     ZHChapterBodyModel *lChapterBody = [[ZHChapterBodyModel alloc] init];
+    lChapterBody.title =lTitle;
     lChapterBody.content = lContent;
+    lChapterBody.address = address;
     if (lPreHref.length > 0) {
         lChapterBody.preAddress = [lRootAddress stringByAppendingPathComponent:lPreHref];
     }

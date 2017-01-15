@@ -40,6 +40,9 @@
 		82BE27E21E27CA4800476D42 /* UIColor+Hallows.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BE27E11E27CA4800476D42 /* UIColor+Hallows.m */; };
 		82BE27E51E27CAA500476D42 /* AppDelegate+Configure.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BE27E41E27CAA500476D42 /* AppDelegate+Configure.m */; };
 		82BE27E81E27CBFE00476D42 /* ZHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82BE27E71E27CBFE00476D42 /* ZHViewController.m */; };
+		82DDEF2C1E2BE4DC00512FF5 /* NSString+Hallows.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DDEF2B1E2BE4DC00512FF5 /* NSString+Hallows.m */; };
+		82DDEF301E2BE59900512FF5 /* ZHCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DDEF2F1E2BE59900512FF5 /* ZHCacheManager.m */; };
+		82DDEF331E2BF1C900512FF5 /* ZHLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DDEF321E2BF1C900512FF5 /* ZHLoadingView.m */; };
 		82DFA0E41E29D25100A059ED /* ZHUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA0E31E29D25100A059ED /* ZHUtils.m */; };
 		82EAFA411E2A5AE300F0403B /* ZHReaderPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EAFA401E2A5AE300F0403B /* ZHReaderPageController.m */; };
 		82EAFA451E2A7A4200F0403B /* NSAttributedString+Hallows.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EAFA441E2A7A4200F0403B /* NSAttributedString+Hallows.m */; };
@@ -117,6 +120,12 @@
 		82BE27E41E27CAA500476D42 /* AppDelegate+Configure.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+Configure.m"; sourceTree = "<group>"; };
 		82BE27E61E27CBFE00476D42 /* ZHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHViewController.h; sourceTree = "<group>"; };
 		82BE27E71E27CBFE00476D42 /* ZHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHViewController.m; sourceTree = "<group>"; };
+		82DDEF2A1E2BE4DC00512FF5 /* NSString+Hallows.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hallows.h"; sourceTree = "<group>"; };
+		82DDEF2B1E2BE4DC00512FF5 /* NSString+Hallows.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hallows.m"; sourceTree = "<group>"; };
+		82DDEF2E1E2BE59900512FF5 /* ZHCacheManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHCacheManager.h; sourceTree = "<group>"; };
+		82DDEF2F1E2BE59900512FF5 /* ZHCacheManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHCacheManager.m; sourceTree = "<group>"; };
+		82DDEF311E2BF1C900512FF5 /* ZHLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHLoadingView.h; sourceTree = "<group>"; };
+		82DDEF321E2BF1C900512FF5 /* ZHLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHLoadingView.m; sourceTree = "<group>"; };
 		82DFA0E21E29D25100A059ED /* ZHUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHUtils.h; sourceTree = "<group>"; };
 		82DFA0E31E29D25100A059ED /* ZHUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHUtils.m; sourceTree = "<group>"; };
 		82EAFA3F1E2A5AE300F0403B /* ZHReaderPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHReaderPageController.h; sourceTree = "<group>"; };
@@ -159,6 +168,8 @@
 				821D57F41E293A8A00546D39 /* ZHSearchBookCell.h */,
 				821D57F51E293A8A00546D39 /* ZHSearchBookCell.m */,
 				821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */,
+				82DDEF311E2BF1C900512FF5 /* ZHLoadingView.h */,
+				82DDEF321E2BF1C900512FF5 /* ZHLoadingView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,6 +242,7 @@
 		829071811E235EAE00FA1295 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				82DDEF2D1E2BE58500512FF5 /* Cache */,
 				82EAFA421E2A7A0700F0403B /* Category */,
 				82DFA0E11E29D23C00A059ED /* Utils */,
 				82BE27DF1E27CA2D00476D42 /* Color */,
@@ -373,6 +385,15 @@
 			path = Color;
 			sourceTree = "<group>";
 		};
+		82DDEF2D1E2BE58500512FF5 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				82DDEF2E1E2BE59900512FF5 /* ZHCacheManager.h */,
+				82DDEF2F1E2BE59900512FF5 /* ZHCacheManager.m */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		82DFA0E11E29D23C00A059ED /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +409,8 @@
 				82EAFA461E2A7D0200F0403B /* ZHCategory.h */,
 				82EAFA431E2A7A4200F0403B /* NSAttributedString+Hallows.h */,
 				82EAFA441E2A7A4200F0403B /* NSAttributedString+Hallows.m */,
+				82DDEF2A1E2BE4DC00512FF5 /* NSString+Hallows.h */,
+				82DDEF2B1E2BE4DC00512FF5 /* NSString+Hallows.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -524,6 +547,7 @@
 				82EAFA411E2A5AE300F0403B /* ZHReaderPageController.m in Sources */,
 				829071B31E2369AC00FA1295 /* ZHParse.m in Sources */,
 				8290719A1E235F0200FA1295 /* MCRequestSerialization.m in Sources */,
+				82DDEF331E2BF1C900512FF5 /* ZHLoadingView.m in Sources */,
 				82BE27E21E27CA4800476D42 /* UIColor+Hallows.m in Sources */,
 				829071421E23561A00FA1295 /* AppDelegate.m in Sources */,
 				8290719B1E235F0200FA1295 /* MCResponseSerialization.m in Sources */,
@@ -544,6 +568,8 @@
 				82EAFA451E2A7A4200F0403B /* NSAttributedString+Hallows.m in Sources */,
 				82BE27E51E27CAA500476D42 /* AppDelegate+Configure.m in Sources */,
 				82489EF61E24886B003731C9 /* ZHTextView.m in Sources */,
+				82DDEF2C1E2BE4DC00512FF5 /* NSString+Hallows.m in Sources */,
+				82DDEF301E2BE59900512FF5 /* ZHCacheManager.m in Sources */,
 				829071A51E23645900FA1295 /* ZHChapterModel.m in Sources */,
 				8200A9681E24AB4F0065D496 /* ZHTextView+Static.m in Sources */,
 				829071AF1E23652900FA1295 /* XPathQuery.m in Sources */,

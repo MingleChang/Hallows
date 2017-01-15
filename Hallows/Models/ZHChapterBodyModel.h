@@ -11,7 +11,9 @@
 
 @interface ZHChapterBodyModel : NSObject
 
+@property (nonatomic, copy)NSString *title;
 @property (nonatomic, copy)NSString *content;
+@property (nonatomic, copy)NSString *address;
 @property (nonatomic, copy)NSString *preAddress;
 @property (nonatomic, copy)NSString *nextAddress;
 

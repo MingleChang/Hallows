@@ -71,6 +71,9 @@
         self.pageIndex = 1;
         [lReaderPage showAttributedText:self.pages.firstObject page:self.pageIndex totalPage:self.pages.count];
     }
+    self.navigationItem.title = self.chapterBody.title;
+    self.pageDirection = ZHReaderPageDirectionUnknown;
+    [self dismissLoading];
 }
 
 - (void)pageChapterBody {
@@ -87,12 +90,23 @@
 
 #pragma mark - Request
 - (void)requestChapterBodyWithAddress:(NSString *)address {
+    [self showLoading];
     ZH_WEAK(self);
     [ZHParse parseChapterBodyWithAddress:address completion:^(id response, NSError *error) {
         ZH_STRONG(weakobject);
         strongobject.chapterBody = (ZHChapterBodyModel *)response;
         [strongobject pageChapterBody];
+        [strongobject advanceRequestChapterBody];
     }];
+}
+
+- (void)advanceRequestChapterBody {
+    if ([self.chapterBody hasPre]) {
+        [ZHParse parseChapterBodyWithAddress:self.chapterBody.preAddress completion:nil];
+    }
+    if ([self.chapterBody hasNext]) {
+        [ZHParse parseChapterBodyWithAddress:self.chapterBody.nextAddress completion:nil];
+    }
 }
 
 #pragma mark - Delegate
@@ -143,7 +157,6 @@
     }else if(self.pageDirection == ZHReaderPageDirectionNext) {
         [self requestChapterBodyWithAddress:self.chapterBody.nextAddress];
     }
-//    self.pageDirection = ZHReaderPageDirectionUnknown;
 }
 /*
 #pragma mark - Navigation

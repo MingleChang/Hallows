@@ -10,6 +10,9 @@
 
 @interface ZHViewController : UIViewController
 
+- (void)showLoading;
+- (void)dismissLoading;
+
 - (BOOL)navigationBarNeedHidden;
 - (void)resetNavigationBarItems;
 

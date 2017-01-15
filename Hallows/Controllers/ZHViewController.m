@@ -7,8 +7,12 @@
 //
 
 #import "ZHViewController.h"
+#import "ZHLoadingView.h"
+#import "ZHCommon.h"
 
 @interface ZHViewController ()
+
+@property (nonatomic, strong)ZHLoadingView *loadingView;
 
 @end
 
@@ -29,6 +33,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)showLoading {
+    if (self.loadingView) {
+        [self dismissLoading];
+    }
+    self.loadingView = [[ZHLoadingView alloc] init];
+    [self.view addSubview:self.loadingView];
+    [self.loadingView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+}
+
+- (void)dismissLoading {
+    [self.loadingView removeFromSuperview];
+    self.loadingView = nil;
 }
 
 #pragma mark - Private Mothed

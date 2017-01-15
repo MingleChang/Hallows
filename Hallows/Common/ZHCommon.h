@@ -19,6 +19,7 @@
 #import "UIColor+Hallows.h"
 #import "ZHUtils.h"
 #import "ZHCategory.h"
+#import "ZHCacheManager.h"
 
 #import <FMDB/FMDB.h>
 #import <MJExtension/MJExtension.h>

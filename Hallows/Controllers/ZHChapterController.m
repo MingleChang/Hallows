@@ -43,8 +43,10 @@
 }
 
 - (void)configureData {
+    [self showLoading];
     ZH_WEAK(self);
     [ZHParse parseChapterListWithAddress:self.bookModel.chapter completion:^(id response, NSError *error) {
+        [self dismissLoading];
         ZH_STRONG(weakobject);
         NSArray *lArray = (NSArray *)response;
         strongobject.chapters = lArray;
