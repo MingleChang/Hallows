@@ -56,7 +56,7 @@
 - (void)queryMyBooksCompletion:(zh_completionBlock)completion {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.database inDatabase:^(FMDatabase *db) {
-            NSString *lSql = [NSString stringWithFormat:@"SELECT * FROM hallows WHERE lastChapter is not null"];
+            NSString *lSql = [NSString stringWithFormat:@"SELECT * FROM hallows WHERE lastChapter is not null ORDER BY mtime DESC"];
             FMResultSet *resultSet = [db executeQuery:lSql];
             NSArray *lArray = [ZHBookModel bookModelsWithResultSet:resultSet];
             dispatch_async(dispatch_get_main_queue(), ^{
