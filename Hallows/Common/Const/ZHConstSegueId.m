@@ -15,3 +15,6 @@ NSString* const ZHConstSegueIdHome2Chapter  =@"ZHHomeToChapter";
 NSString* const ZHConstSegueIdSearch2Chapter=@"ZHSearchToChapter";
 //章节列表到阅读界面
 NSString* const ZHConstSegueIdChapter2Reader=@"ZHChapterToReader";
+
+NSString* const ZHConstSegueIdZHHome2Reader=@"ZHHomeToReader";
+

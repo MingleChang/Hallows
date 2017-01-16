@@ -11,6 +11,7 @@
 
 @interface ZHReaderController : ZHViewController
 
+@property (nonatomic, assign)NSInteger bookId;
 @property (nonatomic, copy)NSString *address;
 
 @end

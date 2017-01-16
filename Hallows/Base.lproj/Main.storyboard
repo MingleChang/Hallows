@@ -39,7 +39,67 @@
                     <view key="view" contentMode="scaleToFill" id="ZsU-mR-DnL">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XsE-jb-NYE">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vqb-gd-UPV">
+                                    <size key="itemSize" width="96" height="182"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ZHBookCellId" id="KDs-Hf-UZh" customClass="ZHBookCell">
+                                        <rect key="frame" x="0.0" y="0.0" width="96" height="182"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="96" height="182"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="砂砾石大家速度拉沙德" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b03-Gu-cW2">
+                                                    <rect key="frame" x="0.0" y="120" width="96" height="62"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="2il-Be-Bth">
+                                                    <rect key="frame" x="0.0" y="0.0" width="96" height="120"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="2il-Be-Bth" secondAttribute="height" multiplier="4:5" id="wfF-Wy-bRc"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="b03-Gu-cW2" secondAttribute="bottom" id="0dY-is-neo"/>
+                                            <constraint firstAttribute="trailing" secondItem="2il-Be-Bth" secondAttribute="trailing" id="3FX-bB-Fbx"/>
+                                            <constraint firstItem="2il-Be-Bth" firstAttribute="leading" secondItem="KDs-Hf-UZh" secondAttribute="leading" id="4rJ-yJ-cUu"/>
+                                            <constraint firstItem="b03-Gu-cW2" firstAttribute="leading" secondItem="KDs-Hf-UZh" secondAttribute="leading" id="8vO-Yf-CaI"/>
+                                            <constraint firstItem="b03-Gu-cW2" firstAttribute="top" secondItem="2il-Be-Bth" secondAttribute="bottom" id="rJQ-G5-gcA"/>
+                                            <constraint firstAttribute="trailing" secondItem="b03-Gu-cW2" secondAttribute="trailing" id="s2H-rz-TTn"/>
+                                            <constraint firstItem="2il-Be-Bth" firstAttribute="width" secondItem="2il-Be-Bth" secondAttribute="height" multiplier="4:5" id="ucE-m3-x1f"/>
+                                            <constraint firstItem="2il-Be-Bth" firstAttribute="top" secondItem="KDs-Hf-UZh" secondAttribute="top" id="yYA-Sd-3ky"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="cellImageView" destination="2il-Be-Bth" id="mTi-ZF-Jl5"/>
+                                            <outlet property="cellTitleLabel" destination="b03-Gu-cW2" id="ifT-b5-uYN"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="e3r-OF-OZr" id="Ph8-9x-aIV"/>
+                                    <outlet property="delegate" destination="e3r-OF-OZr" id="r5k-Lo-jsI"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XsE-jb-NYE" firstAttribute="leading" secondItem="ZsU-mR-DnL" secondAttribute="leading" id="ixg-0r-XOZ"/>
+                            <constraint firstItem="XsE-jb-NYE" firstAttribute="top" secondItem="EvP-Eo-M6F" secondAttribute="bottom" id="jeB-fy-tIo"/>
+                            <constraint firstAttribute="trailing" secondItem="XsE-jb-NYE" secondAttribute="trailing" id="lUv-Ph-LzD"/>
+                            <constraint firstItem="esT-Uz-f2e" firstAttribute="top" secondItem="XsE-jb-NYE" secondAttribute="bottom" id="rxa-ko-huB"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我的书架" id="ckO-ce-0vR">
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="FNv-xD-hxj">
@@ -49,13 +109,15 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionView" destination="XsE-jb-NYE" id="j1y-mq-xLe"/>
                         <segue destination="bPR-hX-x7V" kind="show" identifier="ZHHomeToSearch" id="VEB-k9-iTD"/>
                         <segue destination="zMH-wz-chK" kind="show" identifier="ZHHomeToChapter" id="RiD-Y7-OxH"/>
+                        <segue destination="k7f-o6-Ayq" kind="show" identifier="ZHHomeToReader" id="VEY-wi-JQb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H08-L8-G4s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="405" y="-411"/>
+            <point key="canvasLocation" x="404" y="-411.544227886057"/>
         </scene>
         <!--Chapter Controller-->
         <scene sceneID="xD4-qb-2hS">
@@ -120,7 +182,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQu-Fs-2ii" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1137" y="349"/>
+            <point key="canvasLocation" x="914" y="491"/>
         </scene>
         <!--Reader Controller-->
         <scene sceneID="eP3-3u-2MK">
@@ -138,7 +200,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbc-ZY-H5q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1901.5999999999999" y="348.57571214392806"/>
+            <point key="canvasLocation" x="-174" y="590"/>
         </scene>
         <!--Search Controller-->
         <scene sceneID="gbj-hG-LoW">
@@ -226,7 +288,11 @@
             <point key="canvasLocation" x="1136.8" y="-412.44377811094455"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="placeholder" width="150" height="150"/>
+    </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="4bS-U5-6Hg"/>
+        <segue reference="VEY-wi-JQb"/>
+        <segue reference="RiD-Y7-OxH"/>
     </inferredMetricsTieBreakers>
 </document>

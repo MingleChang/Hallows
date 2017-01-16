@@ -12,3 +12,4 @@ FOUNDATION_EXTERN NSString* const ZHConstSegueIdHome2Search;
 FOUNDATION_EXTERN NSString* const ZHConstSegueIdHome2Chapter;
 FOUNDATION_EXTERN NSString* const ZHConstSegueIdSearch2Chapter;
 FOUNDATION_EXTERN NSString* const ZHConstSegueIdChapter2Reader;
+FOUNDATION_EXTERN NSString* const ZHConstSegueIdZHHome2Reader;

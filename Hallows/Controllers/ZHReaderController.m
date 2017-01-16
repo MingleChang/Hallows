@@ -74,6 +74,7 @@
     self.navigationItem.title = self.chapterBody.title;
     self.pageDirection = ZHReaderPageDirectionUnknown;
     [self dismissLoading];
+    [[ZHDatabase database] updateBook:self.bookId lastChapter:self.chapterBody.address];
 }
 
 - (void)pageChapterBody {

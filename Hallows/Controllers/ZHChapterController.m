@@ -83,6 +83,7 @@
     if ([segue.identifier isEqualToString:ZHConstSegueIdChapter2Reader]) {
         ZHReaderController *lViewController = (ZHReaderController *)segue.destinationViewController;
         ZHChapterModel *lChapter = (ZHChapterModel *)sender;
+        lViewController.bookId = self.bookModel.id;
         lViewController.address = lChapter.address;
     }
 }

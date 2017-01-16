@@ -11,11 +11,13 @@
 
 @interface ZHBookModel : NSObject
 
+@property (nonatomic, assign)NSInteger id;
 @property (nonatomic, copy)NSString *title;
 @property (nonatomic, copy)NSString *author;
 @property (nonatomic, copy)NSString *cover;
 @property (nonatomic, copy)NSString *link;
 @property (nonatomic, copy)NSString *chapter;
+@property (nonatomic, copy)NSString *lastChapter;
 
 + (NSArray *)bookModelsWithResultSet:(FMResultSet *)resultSet;
 

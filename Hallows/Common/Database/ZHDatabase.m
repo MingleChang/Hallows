@@ -42,13 +42,46 @@
     });
 }
 
+- (void)updateBook:(NSInteger)bookId lastChapter:(NSString *)lastChapter {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.database inDatabase:^(FMDatabase *db) {
+            NSTimeInterval timeInterval = CFAbsoluteTimeGetCurrent();
+            NSString *lSql = [NSString stringWithFormat:@"UPDATE hallows set lastChapter='%@', mtime=%f where id=%li",lastChapter,timeInterval, bookId];
+            BOOL result = [db executeUpdate:lSql];
+            NSLog(@"UPDATE %@",result?@"SUCCESS":@"FAILED");
+        }];
+    });
+}
+
+- (void)queryMyBooksCompletion:(zh_completionBlock)completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.database inDatabase:^(FMDatabase *db) {
+            NSString *lSql = [NSString stringWithFormat:@"SELECT * FROM hallows WHERE lastChapter is not null"];
+            FMResultSet *resultSet = [db executeQuery:lSql];
+            NSArray *lArray = [ZHBookModel bookModelsWithResultSet:resultSet];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) {
+                    completion(lArray,nil);
+                }
+            });
+        }];
+    });
+}
+
 #pragma mark - Setter And Getter 
 - (FMDatabaseQueue *)database {
     if (_database) {
         return _database;
     }
+    NSString *lLibraryPath = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSAllDomainsMask, YES)[0];
+    NSString *lDBPath = [lLibraryPath stringByAppendingPathComponent:@"hallows.db"];
+    if ([[NSFileManager defaultManager]fileExistsAtPath:lDBPath]) {
+        _database = [FMDatabaseQueue databaseQueueWithPath:lDBPath];
+        return _database;
+    }
     NSString *lPath = [[NSBundle mainBundle]pathForResource:@"hallows" ofType:@"db"];
-    _database = [FMDatabaseQueue databaseQueueWithPath:lPath];
+    [[NSFileManager defaultManager]copyItemAtPath:lPath toPath:lDBPath error:nil];
+    _database = [FMDatabaseQueue databaseQueueWithPath:lDBPath];
     return _database;
 }
 

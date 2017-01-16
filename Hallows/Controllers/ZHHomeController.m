@@ -7,9 +7,18 @@
 //
 
 #import "ZHHomeController.h"
+#import "ZHReaderController.h"
+#import "ZHBookCell.h"
 #import "ZHCommon.h"
+#import "ZHModel.h"
 
-@interface ZHHomeController ()
+static NSString *const kBookCellId = @"ZHBookCellId";
+
+@interface ZHHomeController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
+@property (nonatomic, copy) NSArray *books;
 
 - (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender;
 
@@ -27,17 +36,80 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self updateMyBook];
+}
+
+#pragma mark - Private
+- (void)updateMyBook {
+    [self showLoading];
+    ZH_WEAK(self);
+    [[ZHDatabase database] queryMyBooksCompletion:^(NSArray *response, NSError *error) {
+        ZH_STRONG(weakobject);
+        [strongobject dismissLoading];
+        strongobject.books = response;
+        [strongobject.collectionView reloadData];
+    }];
+}
+
+#pragma mark - Delegate
+#pragma mark - UICollectionView DataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.books.count;
+}
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    ZHBookModel *lBook = [self.books objectAtIndex:indexPath.row];
+    ZHBookCell *lCell = [collectionView dequeueReusableCellWithReuseIdentifier:kBookCellId forIndexPath:indexPath];
+    [lCell setupBook:lBook];
+    return lCell;
+}
+#pragma mark - UICollectionView Delegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    ZHBookModel *lBook = [self.books objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:ZHConstSegueIdZHHome2Reader sender:lBook];
+}
+
+#pragma mark - UICollectionView Delegate FlowLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    CGFloat width = (ZH_ScreenWidth - 40) / 3;
+    CGFloat height = width / 4 * 5 + 40;
+    return CGSizeMake(width, height);
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 10;
+}
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 10;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    return CGSizeZero;
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    return CGSizeZero;
+}
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:ZHConstSegueIdZHHome2Reader]) {
+        ZHReaderController *lViewController = (ZHReaderController *)segue.destinationViewController;
+        ZHBookModel *lBook = (ZHBookModel *)sender;
+        lViewController.bookId = lBook.id;
+        lViewController.address = lBook.lastChapter;
+    }
 }
-*/
 
 
+#pragma mark - Event Response
 - (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:ZHConstSegueIdHome2Search sender:nil];
 }

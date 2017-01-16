@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8200A9681E24AB4F0065D496 /* ZHTextView+Static.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */; };
+		820E2CCA1E2D3BC600FFD1D7 /* ZHBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 820E2CC81E2D3BC600FFD1D7 /* ZHBookCell.m */; };
+		820E2CCB1E2D3BC700FFD1D7 /* ZHBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E2CC91E2D3BC600FFD1D7 /* ZHBookCell.xib */; };
 		821D57F71E293A8A00546D39 /* ZHSearchBookCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 821D57F51E293A8A00546D39 /* ZHSearchBookCell.m */; };
 		821D57F81E293A8A00546D39 /* ZHSearchBookCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */; };
 		82489EF61E24886B003731C9 /* ZHTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82489EF51E24886B003731C9 /* ZHTextView.m */; };
@@ -54,6 +56,9 @@
 		5707F5EEAEAADF6AA9A15B62 /* Pods-Hallows.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hallows.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hallows/Pods-Hallows.debug.xcconfig"; sourceTree = "<group>"; };
 		8200A9661E24AB4F0065D496 /* ZHTextView+Static.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZHTextView+Static.h"; sourceTree = "<group>"; };
 		8200A9671E24AB4F0065D496 /* ZHTextView+Static.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ZHTextView+Static.m"; sourceTree = "<group>"; };
+		820E2CC71E2D3BC600FFD1D7 /* ZHBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHBookCell.h; sourceTree = "<group>"; };
+		820E2CC81E2D3BC600FFD1D7 /* ZHBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHBookCell.m; sourceTree = "<group>"; };
+		820E2CC91E2D3BC600FFD1D7 /* ZHBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHBookCell.xib; sourceTree = "<group>"; };
 		821D57F41E293A8A00546D39 /* ZHSearchBookCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZHSearchBookCell.h; sourceTree = "<group>"; };
 		821D57F51E293A8A00546D39 /* ZHSearchBookCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZHSearchBookCell.m; sourceTree = "<group>"; };
 		821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ZHSearchBookCell.xib; sourceTree = "<group>"; };
@@ -170,6 +175,9 @@
 				821D57F61E293A8A00546D39 /* ZHSearchBookCell.xib */,
 				82DDEF311E2BF1C900512FF5 /* ZHLoadingView.h */,
 				82DDEF321E2BF1C900512FF5 /* ZHLoadingView.m */,
+				820E2CC71E2D3BC600FFD1D7 /* ZHBookCell.h */,
+				820E2CC81E2D3BC600FFD1D7 /* ZHBookCell.m */,
+				820E2CC91E2D3BC600FFD1D7 /* ZHBookCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -481,6 +489,7 @@
 				82BE27D71E27BBEA00476D42 /* hallows.db in Resources */,
 				8290714D1E23561A00FA1295 /* LaunchScreen.storyboard in Resources */,
 				82BE27D51E27B5B700476D42 /* Assets.xcassets in Resources */,
+				820E2CCB1E2D3BC700FFD1D7 /* ZHBookCell.xib in Resources */,
 				829071481E23561A00FA1295 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +577,7 @@
 				82EAFA451E2A7A4200F0403B /* NSAttributedString+Hallows.m in Sources */,
 				82BE27E51E27CAA500476D42 /* AppDelegate+Configure.m in Sources */,
 				82489EF61E24886B003731C9 /* ZHTextView.m in Sources */,
+				820E2CCA1E2D3BC600FFD1D7 /* ZHBookCell.m in Sources */,
 				82DDEF2C1E2BE4DC00512FF5 /* NSString+Hallows.m in Sources */,
 				82DDEF301E2BE59900512FF5 /* ZHCacheManager.m in Sources */,
 				829071A51E23645900FA1295 /* ZHChapterModel.m in Sources */,
