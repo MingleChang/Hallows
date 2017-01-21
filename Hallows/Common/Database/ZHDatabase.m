@@ -53,6 +53,19 @@
     });
 }
 
+- (void)cleanBookRecord:(NSInteger)bookId completion:(zh_completionBlock)completion {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.database inDatabase:^(FMDatabase *db) {
+            NSString *lSql = [NSString stringWithFormat:@"UPDATE hallows set lastChapter=NULL WHERE id=%li", bookId];
+            BOOL result = [db executeUpdate:lSql];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (completion) {
+                    completion(nil,result?nil:[NSError errorWithDomain:@"阅读记录删除失败" code:9999 userInfo:nil]);
+                }
+            });
+        }];
+    });
+}
 - (void)queryMyBooksCompletion:(zh_completionBlock)completion {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self.database inDatabase:^(FMDatabase *db) {
@@ -79,6 +92,7 @@
         _database = [FMDatabaseQueue databaseQueueWithPath:lDBPath];
         return _database;
     }
+    //未进行文件操作成功或者失败的判断
     NSString *lPath = [[NSBundle mainBundle]pathForResource:@"hallows" ofType:@"db"];
     [[NSFileManager defaultManager]copyItemAtPath:lPath toPath:lDBPath error:nil];
     _database = [FMDatabaseQueue databaseQueueWithPath:lDBPath];

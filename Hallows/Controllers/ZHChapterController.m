@@ -26,7 +26,10 @@
     // Do any additional setup after loading the view.
     [self configure];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -64,7 +67,7 @@
     ZHChapterModel *lChapter = [self.chapters objectAtIndex:indexPath.row];
     UITableViewCell *lCell = [tableView dequeueReusableCellWithIdentifier:@"CellID" forIndexPath:indexPath];
     lCell.textLabel.text = lChapter.name;
-    lCell.detailTextLabel.text = lChapter.address;
+//    lCell.detailTextLabel.text = lChapter.address;
     return lCell;
 }
 

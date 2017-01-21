@@ -13,7 +13,9 @@
 @property (nonatomic, copy)NSAttributedString *text;
 @property (nonatomic, assign)NSInteger page;
 @property (nonatomic, assign)NSInteger totalPage;
+@property (nonatomic, copy)NSString *pageTitle;
 
+- (void)showTitle:(NSString *)title;
 - (void)showAttributedText:(NSAttributedString *)text page:(NSInteger)page totalPage:(NSInteger)totalPage;
 
 @end

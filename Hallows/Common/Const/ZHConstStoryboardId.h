@@ -8,3 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN NSString* const ZHMainStoryboardHomeId;
+FOUNDATION_EXTERN NSString* const ZHMainStoryboardSearchId;
+FOUNDATION_EXTERN NSString* const ZHMainStoryboardChapterId;
+FOUNDATION_EXTERN NSString* const ZHMainStoryboardReaderId;

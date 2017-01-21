@@ -13,7 +13,8 @@
 @interface ZHReaderPageController ()
 
 @property (nonatomic, strong)ZHTextView *textView;
-
+@property (nonatomic, strong)UILabel *titleLabel;
+@property (nonatomic, strong)UILabel *pageLabel;
 @end
 
 @implementation ZHReaderPageController
@@ -23,7 +24,10 @@
     // Do any additional setup after loading the view.
     [self configure];
 }
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -36,18 +40,46 @@
 }
 
 - (void)configureView {
-    self.view.backgroundColor = [UIColor yellowColor];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     
     self.textView = [[ZHTextView alloc] init];
     self.textView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:self.textView];
     [self.textView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.top.equalTo(self.view).offset(20);
+        make.leading.equalTo(self.view);
+        make.trailing.equalTo(self.view);
+        make.bottom.equalTo(self.view).offset(-20);
+    }];
+    
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.font = [UIFont systemFontOfSize:10];
+    [self.view addSubview:self.titleLabel];
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.textView.mas_bottom);
+        make.leading.equalTo(self.view).offset(10);
+        make.bottom.equalTo(self.view);
+    }];
+    
+    self.pageLabel = [[UILabel alloc] init];
+    self.pageLabel.font = [UIFont systemFontOfSize:10];
+    [self.view addSubview:self.pageLabel];
+    [self.pageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.textView.mas_bottom);
+        make.trailing.equalTo(self.view).offset(-10);
+        make.bottom.equalTo(self.view);
     }];
 }
 
 - (void)configureData {
     self.textView.attributedText = self.text;
+    self.pageLabel.text = [NSString stringWithFormat:@"%li/%li",self.page,self.totalPage];
+    self.titleLabel.text = self.pageTitle;
+}
+
+- (void)showTitle:(NSString *)title {
+    self.titleLabel.text = title;
+    self.pageTitle = title;
 }
 
 - (void)showAttributedText:(NSAttributedString *)text page:(NSInteger)page totalPage:(NSInteger)totalPage {
@@ -55,6 +87,7 @@
     self.textView.attributedText = text;
     self.page = page;
     self.totalPage = totalPage;
+    self.pageLabel.text = [NSString stringWithFormat:@"%li/%li",page,totalPage];
 }
 /*
 #pragma mark - Navigation

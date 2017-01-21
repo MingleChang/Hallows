@@ -20,7 +20,7 @@
 #define ZH_ScreenWidth [UIScreen mainScreen].bounds.size.width
 #define ZH_ScreenHeight [UIScreen mainScreen].bounds.size.height
 
-#define ZH_PageSize CGSizeMake(ZH_ScreenWidth - 16, ZH_ScreenHeight - 64 - 16)
+#define ZH_PageSize CGSizeMake(ZH_ScreenWidth - 16, ZH_ScreenHeight - 20 - 20)
 
 
 #endif /* ZHMacro_h */

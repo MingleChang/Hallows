@@ -13,7 +13,6 @@
 - (void)showLoading;
 - (void)dismissLoading;
 
-- (BOOL)navigationBarNeedHidden;
 - (void)resetNavigationBarItems;
 
 @end

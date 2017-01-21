@@ -38,6 +38,7 @@
 - (void)configure {
     self.editable = NO;
     self.bounces = NO;
+    self.userInteractionEnabled = NO;
 }
 
 - (void)setText:(NSString *)text {

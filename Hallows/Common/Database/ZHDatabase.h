@@ -15,6 +15,7 @@
 + (ZHDatabase *)database;
 - (void)searchKey:(NSString *)key start:(NSInteger)start count:(NSInteger)count completion:(zh_completionBlock)completion;
 - (void)updateBook:(NSInteger)bookId lastChapter:(NSString *)lastChapter;
+- (void)cleanBookRecord:(NSInteger)bookId completion:(zh_completionBlock)completion;
 - (void)queryMyBooksCompletion:(zh_completionBlock)completion;
 
 @end

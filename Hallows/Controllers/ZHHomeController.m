@@ -8,6 +8,7 @@
 
 #import "ZHHomeController.h"
 #import "ZHReaderController.h"
+#import "ZHChapterController.h"
 #import "ZHBookCell.h"
 #import "ZHCommon.h"
 #import "ZHModel.h"
@@ -18,8 +19,10 @@ static NSString *const kBookCellId = @"ZHBookCellId";
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (nonatomic, copy) NSArray *books;
+@property (nonatomic, strong) NSMutableArray *books;
+@property (nonatomic, assign) BOOL isEdit;
 
+- (IBAction)editBarButtonItemClick:(UIBarButtonItem *)sender;
 - (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender;
 
 @end
@@ -38,6 +41,7 @@ static NSString *const kBookCellId = @"ZHBookCellId";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:animated];
     [self updateMyBook];
 }
 
@@ -48,9 +52,24 @@ static NSString *const kBookCellId = @"ZHBookCellId";
     [[ZHDatabase database] queryMyBooksCompletion:^(NSArray *response, NSError *error) {
         ZH_STRONG(weakobject);
         [strongobject dismissLoading];
-        strongobject.books = response;
+        strongobject.books = [response mutableCopy];
         [strongobject.collectionView reloadData];
     }];
+}
+
+- (void)startReadByBook:(ZHBookModel *)book {
+    UIStoryboard *lStoryboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ZHChapterController *lChapterController = [lStoryboard instantiateViewControllerWithIdentifier:ZHMainStoryboardChapterId];
+    lChapterController.bookModel = book;
+    
+    ZHReaderController *lReaderController = [lStoryboard instantiateViewControllerWithIdentifier:ZHMainStoryboardReaderId];
+    lReaderController.bookId = book.id;
+    lReaderController.address = book.lastChapter;
+    
+    NSArray *lViewControllers = self.navigationController.viewControllers;
+    lViewControllers = [lViewControllers arrayByAddingObject:lChapterController];
+    lViewControllers = [lViewControllers arrayByAddingObject:lReaderController];
+    [self.navigationController setViewControllers:lViewControllers animated:YES];
 }
 
 #pragma mark - Delegate
@@ -59,16 +78,30 @@ static NSString *const kBookCellId = @"ZHBookCellId";
     return self.books.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    ZHBookModel *lBook = [self.books objectAtIndex:indexPath.row];
+    NSInteger row = [indexPath row];
+    ZHBookModel *lBook = [self.books objectAtIndex:row];
     ZHBookCell *lCell = [collectionView dequeueReusableCellWithReuseIdentifier:kBookCellId forIndexPath:indexPath];
     [lCell setupBook:lBook];
+    [lCell setupIsDelete:self.isEdit];
+    ZH_WEAK(self);
+    [lCell setDeleteBlock:^{
+        ZH_STRONG(weakobject);
+        [strongobject.books removeObject:lBook];
+        [[ZHDatabase database] cleanBookRecord:lBook.id completion:nil];
+        [strongobject.collectionView reloadData];
+    }];
     return lCell;
 }
 #pragma mark - UICollectionView Delegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     [collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    
+    if (self.isEdit) {
+        return;
+    }
     ZHBookModel *lBook = [self.books objectAtIndex:indexPath.row];
-    [self performSegueWithIdentifier:ZHConstSegueIdZHHome2Reader sender:lBook];
+    
+    [self startReadByBook:lBook];
 }
 
 #pragma mark - UICollectionView Delegate FlowLayout
@@ -100,16 +133,15 @@ static NSString *const kBookCellId = @"ZHBookCellId";
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    if ([segue.identifier isEqualToString:ZHConstSegueIdZHHome2Reader]) {
-        ZHReaderController *lViewController = (ZHReaderController *)segue.destinationViewController;
-        ZHBookModel *lBook = (ZHBookModel *)sender;
-        lViewController.bookId = lBook.id;
-        lViewController.address = lBook.lastChapter;
-    }
 }
 
 
 #pragma mark - Event Response
+- (IBAction)editBarButtonItemClick:(UIBarButtonItem *)sender {
+    self.isEdit = !self.isEdit;
+    self.navigationItem.leftBarButtonItem.title = self.isEdit?@"完成":@"编辑";
+    [self.collectionView reloadData];
+}
 - (IBAction)searchBarButtonItemClick:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:ZHConstSegueIdHome2Search sender:nil];
 }

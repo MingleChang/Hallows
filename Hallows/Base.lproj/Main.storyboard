@@ -31,7 +31,7 @@
         <!--我的书架-->
         <scene sceneID="Tr2-WA-hVU">
             <objects>
-                <viewController id="e3r-OF-OZr" customClass="ZHHomeController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ZHHomeController" id="e3r-OF-OZr" customClass="ZHHomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EvP-Eo-M6F"/>
                         <viewControllerLayoutGuide type="bottom" id="esT-Uz-f2e"/>
@@ -69,6 +69,17 @@
                                                         <constraint firstAttribute="width" secondItem="2il-Be-Bth" secondAttribute="height" multiplier="4:5" id="wfF-Wy-bRc"/>
                                                     </constraints>
                                                 </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zMZ-KN-42Y">
+                                                    <rect key="frame" x="66" y="0.0" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="30" id="OgD-vz-4pi"/>
+                                                        <constraint firstAttribute="height" constant="30" id="t6K-NE-B5i"/>
+                                                    </constraints>
+                                                    <state key="normal" image="delete"/>
+                                                    <connections>
+                                                        <action selector="cellDeleteButtonClick:" destination="KDs-Hf-UZh" eventType="touchUpInside" id="aDv-XS-z9b"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <constraints>
@@ -76,12 +87,15 @@
                                             <constraint firstAttribute="trailing" secondItem="2il-Be-Bth" secondAttribute="trailing" id="3FX-bB-Fbx"/>
                                             <constraint firstItem="2il-Be-Bth" firstAttribute="leading" secondItem="KDs-Hf-UZh" secondAttribute="leading" id="4rJ-yJ-cUu"/>
                                             <constraint firstItem="b03-Gu-cW2" firstAttribute="leading" secondItem="KDs-Hf-UZh" secondAttribute="leading" id="8vO-Yf-CaI"/>
+                                            <constraint firstAttribute="trailing" secondItem="zMZ-KN-42Y" secondAttribute="trailing" id="Rg8-h2-GC7"/>
+                                            <constraint firstItem="zMZ-KN-42Y" firstAttribute="top" secondItem="KDs-Hf-UZh" secondAttribute="top" id="pLd-rd-7W0"/>
                                             <constraint firstItem="b03-Gu-cW2" firstAttribute="top" secondItem="2il-Be-Bth" secondAttribute="bottom" id="rJQ-G5-gcA"/>
                                             <constraint firstAttribute="trailing" secondItem="b03-Gu-cW2" secondAttribute="trailing" id="s2H-rz-TTn"/>
                                             <constraint firstItem="2il-Be-Bth" firstAttribute="width" secondItem="2il-Be-Bth" secondAttribute="height" multiplier="4:5" id="ucE-m3-x1f"/>
                                             <constraint firstItem="2il-Be-Bth" firstAttribute="top" secondItem="KDs-Hf-UZh" secondAttribute="top" id="yYA-Sd-3ky"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="cellDeleteButton" destination="zMZ-KN-42Y" id="5Q3-ru-BDI"/>
                                             <outlet property="cellImageView" destination="2il-Be-Bth" id="mTi-ZF-Jl5"/>
                                             <outlet property="cellTitleLabel" destination="b03-Gu-cW2" id="ifT-b5-uYN"/>
                                         </connections>
@@ -102,6 +116,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="我的书架" id="ckO-ce-0vR">
+                        <barButtonItem key="leftBarButtonItem" title="编辑" id="9S4-KD-zXJ">
+                            <connections>
+                                <action selector="editBarButtonItemClick:" destination="e3r-OF-OZr" id="A3D-fF-aO3"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="FNv-xD-hxj">
                             <connections>
                                 <action selector="searchBarButtonItemClick:" destination="e3r-OF-OZr" id="Y0L-wW-MHN"/>
@@ -122,7 +141,7 @@
         <!--Chapter Controller-->
         <scene sceneID="xD4-qb-2hS">
             <objects>
-                <viewController id="zMH-wz-chK" customClass="ZHChapterController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ZHChapterController" id="zMH-wz-chK" customClass="ZHChapterController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PTf-Qp-AmZ"/>
                         <viewControllerLayoutGuide type="bottom" id="bFe-dS-kaW"/>
@@ -187,7 +206,7 @@
         <!--Reader Controller-->
         <scene sceneID="eP3-3u-2MK">
             <objects>
-                <viewController id="k7f-o6-Ayq" customClass="ZHReaderController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ZHReaderController" id="k7f-o6-Ayq" customClass="ZHReaderController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="gSt-nr-8Vc"/>
                         <viewControllerLayoutGuide type="bottom" id="kc4-ht-UOC"/>
@@ -195,17 +214,55 @@
                     <view key="view" contentMode="scaleToFill" id="unL-I3-LKC">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sqv-D2-Xhn">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close" translatesAutoresizingMaskIntoConstraints="NO" id="Mtg-qe-Ne1">
+                                        <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="b4F-hf-DAf"/>
+                                            <constraint firstAttribute="height" constant="44" id="jms-mx-PxN"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oTk-TJ-yYB">
+                                        <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                                        <connections>
+                                            <action selector="closeButtonClick:" destination="k7f-o6-Ayq" eventType="touchUpInside" id="xRn-pS-Zfp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="7WM-hY-6pr"/>
+                                    <constraint firstItem="oTk-TJ-yYB" firstAttribute="trailing" secondItem="Mtg-qe-Ne1" secondAttribute="trailing" id="EQn-Wd-rF5"/>
+                                    <constraint firstItem="oTk-TJ-yYB" firstAttribute="leading" secondItem="Mtg-qe-Ne1" secondAttribute="leading" id="GRg-NW-21w"/>
+                                    <constraint firstItem="oTk-TJ-yYB" firstAttribute="bottom" secondItem="Mtg-qe-Ne1" secondAttribute="bottom" id="J6O-MW-0We"/>
+                                    <constraint firstItem="Mtg-qe-Ne1" firstAttribute="leading" secondItem="Sqv-D2-Xhn" secondAttribute="leading" id="Wjr-De-vrB"/>
+                                    <constraint firstItem="oTk-TJ-yYB" firstAttribute="top" secondItem="Mtg-qe-Ne1" secondAttribute="top" id="jY1-GQ-Fv4"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mtg-qe-Ne1" secondAttribute="bottom" id="ql7-2w-2l3"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sqv-D2-Xhn" firstAttribute="leading" secondItem="unL-I3-LKC" secondAttribute="leading" id="ENJ-pc-UJe"/>
+                            <constraint firstItem="Sqv-D2-Xhn" firstAttribute="top" secondItem="unL-I3-LKC" secondAttribute="top" id="ruM-2c-okQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Sqv-D2-Xhn" secondAttribute="trailing" id="xbs-ku-xKC"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="menuTopView" destination="Sqv-D2-Xhn" id="vs9-e7-NCR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dbc-ZY-H5q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-174" y="590"/>
+            <point key="canvasLocation" x="-175.19999999999999" y="589.65517241379314"/>
         </scene>
         <!--Search Controller-->
         <scene sceneID="gbj-hG-LoW">
             <objects>
-                <viewController id="bPR-hX-x7V" customClass="ZHSearchController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ZHSearchController" id="bPR-hX-x7V" customClass="ZHSearchController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="7NX-xf-pHg"/>
                         <viewControllerLayoutGuide type="bottom" id="ORa-Tq-dRK"/>
@@ -289,6 +346,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="close" width="24" height="24"/>
+        <image name="delete" width="32" height="32"/>
         <image name="placeholder" width="150" height="150"/>
     </resources>
     <inferredMetricsTieBreakers>

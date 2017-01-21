@@ -30,6 +30,17 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSM-2y-rZQ">
+                        <rect key="frame" x="56" y="0.0" width="30" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="2NL-UT-Kv2"/>
+                            <constraint firstAttribute="height" constant="30" id="wbU-xk-b1I"/>
+                        </constraints>
+                        <state key="normal" image="delete"/>
+                        <connections>
+                            <action selector="cellDeleteButtonClick:" destination="gTV-IL-0wX" eventType="touchUpInside" id="t4a-3I-R8w"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <constraints>
@@ -37,12 +48,15 @@
                 <constraint firstAttribute="trailing" secondItem="4Db-fu-8cd" secondAttribute="trailing" id="IpU-EJ-7cJ"/>
                 <constraint firstItem="WB6-e3-9rd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="PHg-nP-ydD"/>
                 <constraint firstAttribute="trailing" secondItem="WB6-e3-9rd" secondAttribute="trailing" id="QDo-wv-Ii6"/>
+                <constraint firstItem="BSM-2y-rZQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SOS-tS-nYZ"/>
                 <constraint firstItem="WB6-e3-9rd" firstAttribute="top" secondItem="4Db-fu-8cd" secondAttribute="bottom" id="a7v-lc-ZI3"/>
                 <constraint firstItem="4Db-fu-8cd" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fxx-zD-mve"/>
+                <constraint firstAttribute="trailing" secondItem="BSM-2y-rZQ" secondAttribute="trailing" id="gMB-JB-OnH"/>
                 <constraint firstItem="4Db-fu-8cd" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="kW9-Zs-boD"/>
             </constraints>
             <size key="customSize" width="86" height="148"/>
             <connections>
+                <outlet property="cellDeleteButton" destination="BSM-2y-rZQ" id="uZ4-8W-rLW"/>
                 <outlet property="cellImageView" destination="4Db-fu-8cd" id="1Ho-Ew-sN4"/>
                 <outlet property="cellTitleLabel" destination="WB6-e3-9rd" id="QeW-ae-gCC"/>
             </connections>
@@ -50,6 +64,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="delete" width="32" height="32"/>
         <image name="placeholder" width="150" height="150"/>
     </resources>
 </document>

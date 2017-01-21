@@ -12,6 +12,7 @@
 
 #endif /* ZHTypeBlock_h */
 
+typedef void(^zh_voidBlock)(void);
 typedef void(^zh_completionBlock)(id response, NSError *error);
 
 typedef NS_ENUM(NSInteger, ZHReaderPageDirection) {

@@ -18,7 +18,7 @@ static UIColor *fontColor;
     if (fontColor) {
         return fontColor;
     }
-    return [UIColor redColor];
+    return [UIColor blackColor];
 }
 
 + (void)setFontColor:(UIColor *)color {

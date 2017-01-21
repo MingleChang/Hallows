@@ -18,6 +18,14 @@
 
 @implementation ZHViewController
 
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        
+    }
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -27,7 +35,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self resetNavigationBarWithAnimated:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,14 +63,7 @@
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStyleDone target:nil action:nil];
 }
 
-- (void)resetNavigationBarWithAnimated:(BOOL)animated {
-    BOOL isHidden = [self navigationBarNeedHidden];
-    [self.navigationController setNavigationBarHidden:isHidden animated:animated];
-}
 
-- (BOOL)navigationBarNeedHidden {
-    return NO;
-}
 - (void)resetNavigationBarItems {
     
 }
